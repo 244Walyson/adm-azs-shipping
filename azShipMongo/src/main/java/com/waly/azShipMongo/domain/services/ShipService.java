@@ -1,16 +1,16 @@
 package com.waly.azShipMongo.domain.services;
 
 import com.waly.azShipMongo.domain.Ship;
-import com.waly.azShipMongo.domain.ports.ShipPort;
+import com.waly.azShipMongo.domain.ports.ShipRepositoryPort;
 import com.waly.azShipMongo.domain.ports.ShipServicePort;
 
 import java.util.List;
 
 public class ShipService implements ShipServicePort {
 
-    private final ShipPort shipPort;
+    private final ShipRepositoryPort shipPort;
 
-    public ShipService(ShipPort shipPort) {
+    public ShipService(ShipRepositoryPort shipPort) {
         this.shipPort = shipPort;
     }
 

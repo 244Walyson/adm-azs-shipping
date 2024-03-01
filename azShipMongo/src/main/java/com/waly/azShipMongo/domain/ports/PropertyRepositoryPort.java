@@ -1,11 +1,10 @@
 package com.waly.azShipMongo.domain.ports;
 
 import com.waly.azShipMongo.domain.Property;
-import com.waly.azShipMongo.domain.Ship;
 
 import java.util.List;
 
-public interface PropertyPort {
+public interface PropertyRepositoryPort {
 
     List<Property> findAll(String param);
     Property findById(String id);

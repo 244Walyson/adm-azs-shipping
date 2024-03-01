@@ -4,7 +4,7 @@ import com.waly.azShipMongo.domain.Ship;
 
 import java.util.List;
 
-public interface ShipPort {
+public interface ShipRepositoryPort {
 
     List<Ship> findAll(String param);
     Ship findById(String id);

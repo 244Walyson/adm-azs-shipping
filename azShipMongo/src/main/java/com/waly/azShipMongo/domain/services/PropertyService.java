@@ -1,16 +1,16 @@
 package com.waly.azShipMongo.domain.services;
 
 import com.waly.azShipMongo.domain.Property;
-import com.waly.azShipMongo.domain.ports.PropertyPort;
+import com.waly.azShipMongo.domain.ports.PropertyRepositoryPort;
 import com.waly.azShipMongo.domain.ports.PropertyServicePort;
 
 import java.util.List;
 
 public class PropertyService implements PropertyServicePort {
 
-    private final PropertyPort propertyPort;
+    private final PropertyRepositoryPort propertyPort;
 
-    public PropertyService(PropertyPort propertyPort) {
+    public PropertyService(PropertyRepositoryPort propertyPort) {
         this.propertyPort = propertyPort;
     }
 

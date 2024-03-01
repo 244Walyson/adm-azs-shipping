@@ -1,13 +1,13 @@
-package com.waly.azShipMongo.Adapter.entities;
+package com.waly.azShipMongo.Adapter.model.entities;
 
-import com.waly.azShipMongo.domain.Ship;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Set;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,4 +21,6 @@ public class ClientEntity {
     private String email;
     private String phone;
     private String cnpj;
+    @DBRef(lazy = true)
+    private List<ShipEntity> ships;
 }
