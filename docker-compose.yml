@@ -1,0 +1,36 @@
+version: '3'
+services:
+
+  azship-db:
+    image: postgres:latest
+    container_name: azship-db
+    restart: always
+    networks:
+      - ship-network
+    environment:
+      - POSTGRES_DB=ship-db
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=1234567
+    ports:
+      - 5432:5432
+
+  ship-api:
+    build: './desafio-az'
+    container_name: ship-api
+    depends_on:
+      - azship-db
+    networks:
+      - ship-network
+    environment:
+      - PORT=8080
+      - DB_HOST=azship-db
+      - DB_NAME=azship-db
+      - DB_USER=admin
+      - DB_PASSWORD=1234567
+      - DB_PORT=5432
+    ports:
+      - 8080:8080
+
+networks:
+  ship-network:
+    driver: bridge
