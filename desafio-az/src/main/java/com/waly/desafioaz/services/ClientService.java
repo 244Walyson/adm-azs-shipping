@@ -2,17 +2,10 @@ package com.waly.desafioaz.services;
 
 import com.waly.desafioaz.dtos.ClientDTO;
 import com.waly.desafioaz.dtos.ClientShipDTO;
-import com.waly.desafioaz.dtos.PropertyDTO;
-import com.waly.desafioaz.dtos.ShipDTO;
 import com.waly.desafioaz.entities.Client;
-import com.waly.desafioaz.entities.Property;
-import com.waly.desafioaz.entities.Ship;
 import com.waly.desafioaz.exceptions.DatabaseException;
 import com.waly.desafioaz.exceptions.ResourceNotFoundException;
 import com.waly.desafioaz.repositories.Clientrepository;
-import com.waly.desafioaz.repositories.PropertyRepository;
-import com.waly.desafioaz.repositories.ShipRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -21,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-@Slf4j
 @Service
 public class ClientService {
 

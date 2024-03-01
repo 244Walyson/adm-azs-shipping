@@ -2,7 +2,6 @@ package com.waly.desafioaz.repositories;
 
 
 import com.waly.desafioaz.entities.Client;
-import com.waly.desafioaz.entities.Ship;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

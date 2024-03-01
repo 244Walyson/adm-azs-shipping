@@ -1,8 +1,6 @@
 package com.waly.desafioaz.dtos;
 
 import com.waly.desafioaz.entities.Client;
-import com.waly.desafioaz.entities.Ship;
-import jakarta.persistence.OneToMany;
 
 import java.util.Set;
 
