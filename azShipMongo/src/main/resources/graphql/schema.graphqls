@@ -6,10 +6,13 @@ type Query {
 type Mutation {
     insertShip(ship: ShipInput): Ship
     insertClient(name: String!, email: String!, phone: String!, cnpj: String!): Client
-    deleteShip(id: ID!): Ship
+    deleteShip(id: ID!): ReqStatus
     updateShip(ship: ShipInputUpdate!): Ship
 }
 
+type ReqStatus{
+    httpStatus: Int
+}
 type Ship {
     id: ID!
     createdAt: String

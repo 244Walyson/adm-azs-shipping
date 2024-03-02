@@ -68,7 +68,7 @@ public class ShipRepositoryAdapter implements ShipRepositoryPort {
     public void delete(String id)
     {
         if(!repository.existsById(id)){
-
+            throw new RuntimeException();
         }
         try {
             repository.deleteById(id);

@@ -1,11 +1,13 @@
 package com.waly.azShipMongo.Adapter.controllers;
 
+import com.waly.azShipMongo.Adapter.model.dto.ReqStatus;
 import com.waly.azShipMongo.domain.Ship;
 import com.waly.azShipMongo.domain.ports.ShipServicePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -36,7 +38,8 @@ public class ShipController {
         return service.update(ship);
     }
     @MutationMapping
-    public void deleteShip(@Argument String id){
+    public ReqStatus deleteShip(@Argument String id){
         service.delete(id);
+        return new ReqStatus(HttpStatus.NO_CONTENT.value());
     }
 }
