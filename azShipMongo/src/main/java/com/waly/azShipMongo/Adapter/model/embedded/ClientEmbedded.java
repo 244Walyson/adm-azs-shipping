@@ -13,10 +13,14 @@ public class ClientEmbedded {
     private String id;
     private String name;
     private String cnpj;
+    private String email;
+    private String phone;
 
     public ClientEmbedded(ClientEntity entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.cnpj = entity.getCnpj();
+        this.email = entity.getEmail();
+        this.phone = entity.getPhone();
     }
 }

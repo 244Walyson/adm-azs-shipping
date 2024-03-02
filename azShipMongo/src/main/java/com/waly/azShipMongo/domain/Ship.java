@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Ship {
 
-    private Long id;
+    private String id;
     private Instant createdAt;
     private String description;
     private ShipStatus status;
@@ -16,7 +16,7 @@ public class Ship {
     public Ship() {
     }
 
-    public Ship(Long id, Instant createdAt, String description, ShipStatus status, Set<Property> properties, Client client) {
+    public Ship(String id, Instant createdAt, String description, ShipStatus status, Set<Property> properties, Client client) {
         this.id = id;
         this.createdAt = createdAt;
         this.description = description;
@@ -25,11 +25,11 @@ public class Ship {
         this.client = client;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

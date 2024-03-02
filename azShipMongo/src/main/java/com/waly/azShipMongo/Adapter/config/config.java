@@ -7,12 +7,17 @@ import com.waly.azShipMongo.domain.ports.ShipRepositoryPort;
 import com.waly.azShipMongo.domain.ports.ShipServicePort;
 import com.waly.azShipMongo.domain.services.ClientService;
 import com.waly.azShipMongo.domain.services.ShipService;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class config {
 
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
+    }
     @Bean
     public ShipServicePort shipServicePort(ShipRepositoryPort repositoryPort){
         return new ShipService(repositoryPort);

@@ -9,7 +9,7 @@ public interface PropertyRepositoryPort {
     List<Property> findAll(String param);
     Property findById(String id);
     Property insert(Property property);
-    Property update(String id, Property property);
-    Property delete(String id);
+    Property update(Property property);
+    void delete(String id);
 
 }

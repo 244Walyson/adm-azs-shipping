@@ -31,12 +31,12 @@ public class ClientService implements ClientServicePort {
     }
 
     @Override
-    public Client update(String id, Client client) {
-        return clientPort.update(id, client);
+    public Client update(Client client) {
+        return clientPort.update(client);
     }
 
     @Override
-    public Client delete(String id) {
-        return clientPort.delete(id);
+    public void delete(String id) {
+        clientPort.delete(id);
     }
 }

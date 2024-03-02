@@ -30,12 +30,12 @@ public class ShipService implements ShipServicePort {
     }
 
     @Override
-    public Ship update(String id, Ship ship) {
-        return shipPort.update(id, ship);
+    public Ship update(Ship ship) {
+        return shipPort.update(ship);
     }
 
     @Override
-    public Ship delete(String id) {
-        return shipPort.delete(id);
+    public void delete(String id) {
+        shipPort.delete(id);
     }
 }

@@ -1,0 +1,75 @@
+type Query {
+    shipById(id: ID!) : Ship
+    findAllShips(param: String): [Ship]
+}
+
+type Mutation {
+    insertShip(ship: ShipInput): Ship
+    insertClient(name: String!, email: String!, phone: String!, cnpj: String!): Client
+    deleteShip(id: ID!): Ship
+    updateShip(ship: ShipInputUpdate!): Ship
+}
+
+type Ship {
+    id: ID!
+    createdAt: String
+    description: String
+    status: ShipStatus
+    properties: [Property]
+    client: Client
+}
+
+input ShipInput {
+    description: String!
+    status: ShipStatus!
+    properties: [PropertyInput]!
+    client: ClientInputShip!
+}
+input ShipInputUpdate {
+    id: ID!
+    description: String!
+    status: ShipStatus!
+    properties: [PropertyInput]!
+    client: ClientInputShip!
+}
+
+input PropertyInput {
+    name: String!
+    propertyValue: Float!
+}
+
+type Property {
+    name: String
+    propertyValue: Float
+}
+
+type Client {
+    id: ID!
+    name: String
+    email: String
+    phone: String
+    cnpj: String
+    ship: [Ship]
+
+}
+input ClientInputShip{
+    id: ID!
+    name: String
+    email: String
+    phone: String
+    cnpj: String
+}
+input ClientInput {
+    id: ID!
+    name: String!
+    email: String!
+    phone: String!
+    cnpj: String!
+    ships: [ShipInput]
+}
+
+enum ShipStatus{
+    ENVIADA
+    ENTREGUE
+    AGUARDANDO_PAGAMENTO
+}

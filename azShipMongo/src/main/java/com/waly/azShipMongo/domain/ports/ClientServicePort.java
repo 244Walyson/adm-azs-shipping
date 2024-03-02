@@ -9,7 +9,7 @@ public interface ClientServicePort {
     List<Client> findAll(String param);
     Client findById(String id);
     Client insert(Client client);
-    Client update(String id, Client client);
-    Client delete(String id);
+    Client update(Client client);
+    void delete(String id);
 
 }

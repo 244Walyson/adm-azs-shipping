@@ -29,12 +29,12 @@ public class ClientRepositoryAdapter implements ClientRepositoryPort {
     }
 
     @Override
-    public Client update(String id, Client client) {
+    public Client update(Client client) {
         return null;
     }
 
     @Override
-    public Client delete(String id) {
-        return null;
+    public void delete(String id) {
+
     }
 }

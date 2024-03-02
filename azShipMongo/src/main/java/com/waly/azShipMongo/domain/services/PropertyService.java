@@ -30,12 +30,12 @@ public class PropertyService implements PropertyServicePort {
     }
 
     @Override
-    public Property update(String id, Property property) {
-        return propertyPort.update(id, property);
+    public Property update(Property property) {
+        return propertyPort.update(property);
     }
 
     @Override
-    public Property delete(String id) {
-        return propertyPort.delete(id);
+    public void delete(String id) {
+        propertyPort.delete(id);
     }
 }

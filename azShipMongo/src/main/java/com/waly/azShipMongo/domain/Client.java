@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class Client {
 
-    private Long id;
+    private String id;
     private String name;
     private String email;
     private String phone;
@@ -14,7 +14,7 @@ public class Client {
     public Client() {
     }
 
-    public Client(Long id, String name, String email, String phone, String cnpj, Set<Ship> ships) {
+    public Client(String id, String name, String email, String phone, String cnpj, Set<Ship> ships) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -23,11 +23,11 @@ public class Client {
         this.ships = ships;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
