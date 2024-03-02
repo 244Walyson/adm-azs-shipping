@@ -2,6 +2,7 @@ package com.waly.desafioaz.controllers;
 
 import com.waly.desafioaz.dtos.PropertyDTO;
 import com.waly.desafioaz.services.PropertyService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/properties")
+@Tag(name = "Property", description = "Controller for Property")
 public class PropertyController {
 
     @Autowired

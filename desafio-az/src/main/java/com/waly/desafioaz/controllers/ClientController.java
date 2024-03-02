@@ -3,6 +3,7 @@ package com.waly.desafioaz.controllers;
 import com.waly.desafioaz.dtos.ClientDTO;
 import com.waly.desafioaz.dtos.ClientShipDTO;
 import com.waly.desafioaz.services.ClientService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/clients")
+@Tag(name = "Client", description = "Controller for clients")
 public class ClientController {
 
     @Autowired
