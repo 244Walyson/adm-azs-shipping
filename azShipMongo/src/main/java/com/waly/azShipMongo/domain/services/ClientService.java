@@ -1,6 +1,7 @@
 package com.waly.azShipMongo.domain.services;
 
 import com.waly.azShipMongo.domain.Client;
+import com.waly.azShipMongo.domain.CustomPage;
 import com.waly.azShipMongo.domain.ports.ClientRepositoryPort;
 import com.waly.azShipMongo.domain.ports.ClientServicePort;
 
@@ -16,8 +17,8 @@ public class ClientService implements ClientServicePort {
 
 
     @Override
-    public List<Client> findAll(String param) {
-        return clientPort.findAll(param);
+    public CustomPage<Client> findAll(String param, int page, int pageSize) {
+        return clientPort.findAll(param, page, pageSize);
     }
 
     @Override

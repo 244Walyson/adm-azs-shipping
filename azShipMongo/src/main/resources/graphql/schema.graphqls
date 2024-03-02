@@ -1,13 +1,17 @@
 type Query {
     shipById(id: ID!) : Ship
     findAllShips(param: String, page: Int, pageSize: Int): ShipPageResult
+    findClientById(id: ID!): Client
+    findAllClients(param: String, page: Int, pageSize: Int): ClientPageResult
 }
 
 type Mutation {
     insertShip(ship: ShipInput): Ship
-    insertClient(name: String!, email: String!, phone: String!, cnpj: String!): Client
     deleteShip(id: ID!): ReqStatus
     updateShip(ship: ShipInputUpdate!): Ship
+    insertClient(client: ClientInput): Client
+    updateClient(client: ClientInput): Client
+    deleteClient(id: ID!): ReqStatus
 }
 
 type ReqStatus{
@@ -74,13 +78,24 @@ input ClientInputShip{
     phone: String
     cnpj: String
 }
+
 input ClientInput {
-    id: ID!
+    id: ID
     name: String!
     email: String!
     phone: String!
     cnpj: String!
-    ships: [ShipInput]
+}
+type ClientPageResult {
+    content: [Client]
+    isLast: Boolean
+    isEmpty: Boolean
+    totalPages: Int
+    totalElements: Int
+    number: Int
+    numberOfElements: Int
+    size: Int
+    isFirst: Boolean
 }
 
 enum ShipStatus{
