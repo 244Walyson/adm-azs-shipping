@@ -1,9 +1,15 @@
 package com.waly.azShipMongo.Adapter.controllers;
 
 import com.waly.azShipMongo.Adapter.model.dto.ReqStatus;
+import com.waly.azShipMongo.Adapter.repositories.ShipRepositoryAdapter;
 import com.waly.azShipMongo.domain.Ship;
+import com.waly.azShipMongo.domain.ports.ShipRepositoryPort;
 import com.waly.azShipMongo.domain.ports.ShipServicePort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
@@ -17,13 +23,20 @@ public class ShipController {
 
     @Autowired
     private ShipServicePort service;
-
     @SchemaMapping(typeName = "Query", value = "findAllShips")
-    public List<Ship> findAll(@Argument String param){
+    public Page<Ship> findAll(@Argument String param, @Argument Integer page, @Argument Integer pageSize){
         if(param == null){
             param = "";
         }
-        return service.findAll(param);
+        if (page == null){
+            page = 0;
+        }
+        if(pageSize == null){
+            pageSize = 10;
+        }
+        List<Ship> ships = service.findAll(param, page, pageSize);
+        PageImpl<Ship> pageShip = new PageImpl<>(ships);
+        return pageShip;
     }
 
     @SchemaMapping(typeName = "Query", value = "shipById")

@@ -15,8 +15,8 @@ public class ShipService implements ShipServicePort {
     }
 
     @Override
-    public List<Ship> findAll(String param) {
-        return shipPort.findAll(param);
+    public List<Ship> findAll(String param, int page, int pageSize) {
+        return shipPort.findAll(param, page, pageSize);
     }
 
     @Override

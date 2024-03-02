@@ -1,5 +1,6 @@
 package com.waly.azShipMongo.Adapter.repositories;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.waly.azShipMongo.Adapter.model.embedded.ClientEmbedded;
 import com.waly.azShipMongo.Adapter.model.entities.ClientEntity;
 import com.waly.azShipMongo.Adapter.model.entities.ShipEntity;
@@ -8,13 +9,18 @@ import com.waly.azShipMongo.Adapter.model.exceptions.ResourceNotFoundException;
 import com.waly.azShipMongo.domain.Client;
 import com.waly.azShipMongo.domain.Ship;
 import com.waly.azShipMongo.domain.ports.ShipRepositoryPort;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
 
+@Slf4j
 @Service
 public class ShipRepositoryAdapter implements ShipRepositoryPort {
 
@@ -26,9 +32,11 @@ public class ShipRepositoryAdapter implements ShipRepositoryPort {
     private ModelMapper modelMapper;
 
     @Override
-    public List<Ship> findAll(String param) {
-        List<ShipEntity> shipEntities = repository.searchShips(param);
-        return shipEntities.stream().map(x -> modelMapper.map(x, Ship.class)).toList();
+    public List<Ship> findAll(String param, int page, int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        Page<ShipEntity> shipEntities = repository.searchShips(param, pageable);
+        List<ShipEntity> shipEntityList = shipEntities.getContent();
+        return shipEntityList.stream().map(x -> modelMapper.map(x, Ship.class)).toList();
     }
 
     @Override

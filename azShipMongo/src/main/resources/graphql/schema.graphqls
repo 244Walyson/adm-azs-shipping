@@ -1,6 +1,6 @@
 type Query {
     shipById(id: ID!) : Ship
-    findAllShips(param: String): [Ship]
+    findAllShips(param: String, page: Int, pageSize: Int): ShipPageResult
 }
 
 type Mutation {
@@ -20,6 +20,20 @@ type Ship {
     status: ShipStatus
     properties: [Property]
     client: Client
+}
+
+type ShipPageResult {
+    content: [Ship]
+#    isLast: Boolean
+#    isEmpty: Boolean
+#    totalPages: Int
+#    totalElements: Int
+#    number: Int
+#    numberOfElements: Int
+#    size: Int
+#    isFirst: Boolean
+#    hasNext: Boolean
+#    hasPrevious: Boolean
 }
 
 input ShipInput {
