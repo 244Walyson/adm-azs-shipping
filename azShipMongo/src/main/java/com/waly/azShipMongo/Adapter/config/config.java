@@ -7,6 +7,9 @@ import com.waly.azShipMongo.domain.ports.ShipRepositoryPort;
 import com.waly.azShipMongo.domain.ports.ShipServicePort;
 import com.waly.azShipMongo.domain.services.ClientService;
 import com.waly.azShipMongo.domain.services.ShipService;
+import graphql.GraphQL;
+import graphql.execution.ExecutionStrategy;
+import graphql.schema.GraphQLSchema;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,4 +29,5 @@ public class config {
     public ClientServicePort clientServicePort(ClientRepositoryPort repositoryPort){
         return new ClientService(repositoryPort);
     }
+
 }

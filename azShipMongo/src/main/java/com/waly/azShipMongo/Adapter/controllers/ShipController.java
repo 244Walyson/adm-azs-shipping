@@ -20,6 +20,9 @@ public class ShipController {
 
     @SchemaMapping(typeName = "Query", value = "findAllShips")
     public List<Ship> findAll(@Argument String param){
+        if(param == null){
+            param = "";
+        }
         return service.findAll(param);
     }
 

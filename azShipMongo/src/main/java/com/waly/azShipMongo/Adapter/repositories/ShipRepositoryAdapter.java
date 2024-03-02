@@ -3,6 +3,8 @@ package com.waly.azShipMongo.Adapter.repositories;
 import com.waly.azShipMongo.Adapter.model.embedded.ClientEmbedded;
 import com.waly.azShipMongo.Adapter.model.entities.ClientEntity;
 import com.waly.azShipMongo.Adapter.model.entities.ShipEntity;
+import com.waly.azShipMongo.Adapter.model.exceptions.DatabaseException;
+import com.waly.azShipMongo.Adapter.model.exceptions.ResourceNotFoundException;
 import com.waly.azShipMongo.domain.Client;
 import com.waly.azShipMongo.domain.Ship;
 import com.waly.azShipMongo.domain.ports.ShipRepositoryPort;
@@ -25,14 +27,14 @@ public class ShipRepositoryAdapter implements ShipRepositoryPort {
 
     @Override
     public List<Ship> findAll(String param) {
-        List<ShipEntity> shipEntities = repository.findAll();
+        List<ShipEntity> shipEntities = repository.searchShips(param);
         return shipEntities.stream().map(x -> modelMapper.map(x, Ship.class)).toList();
     }
 
     @Override
     public Ship findById(String id) {
         ShipEntity shipEntity = repository.findById(id).orElseThrow(() -> {
-            throw new RuntimeException("");
+            throw new ResourceNotFoundException("Frete não encontrado para o id: " + id);
         });
         return modelMapper.map(shipEntity, Ship.class);
     }
@@ -41,8 +43,9 @@ public class ShipRepositoryAdapter implements ShipRepositoryPort {
     public Ship insert(Ship ship) {
         ShipEntity entity = modelMapper.map(ship, ShipEntity.class);
         entity.setCreatedAt(Instant.now());
-        ClientEntity client = clientRepository.findById(ship.getClient().getId()).orElseThrow(() -> {
-            throw new RuntimeException("");
+        String clientId = ship.getClient().getId();
+        ClientEntity client = clientRepository.findById(clientId).orElseThrow(() -> {
+            throw new ResourceNotFoundException("Cliente não encontrado para o id: " + clientId);
         });
         entity.setClient(new ClientEmbedded(client));
         return modelMapper.map(repository.save(entity), Ship.class);
@@ -51,12 +54,13 @@ public class ShipRepositoryAdapter implements ShipRepositoryPort {
     @Override
     public Ship update(Ship ship) {
         ShipEntity entity = repository.findById(ship.getId()).orElseThrow(() -> {
-            throw new RuntimeException("");
+            throw new ResourceNotFoundException("Frete não encontrado para o id: " + ship.getId());
         });
         Instant instant = entity.getCreatedAt();
         entity.getProperties().clear();
-        ClientEntity client = clientRepository.findById(ship.getClient().getId()).orElseThrow(() -> {
-            throw new RuntimeException("");
+        String clientId = ship.getClient().getId();
+        ClientEntity client = clientRepository.findById(clientId).orElseThrow(() -> {
+            throw new ResourceNotFoundException("Cliente não encontrado para o id: " + clientId);
         });
         modelMapper.map(ship, entity);
         entity.setClient(new ClientEmbedded(client));
@@ -68,12 +72,12 @@ public class ShipRepositoryAdapter implements ShipRepositoryPort {
     public void delete(String id)
     {
         if(!repository.existsById(id)){
-            throw new RuntimeException();
+            throw new ResourceNotFoundException("Frete não encontrado para o id: " + id);
         }
         try {
             repository.deleteById(id);
         }catch (Exception e){
-            throw new RuntimeException("");
+            throw new DatabaseException(e.getMessage());
         }
     }
 }
