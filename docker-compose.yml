@@ -37,7 +37,7 @@ services:
       environment:
         - PORT=8080
         - DB_HOST=azship-db
-        - DB_NAME=azship-db
+        - DB_NAME=ship-db
         - DB_USER=admin
         - DB_PASSWORD=1234567
         - DB_PORT=5432
