@@ -1,5 +1,6 @@
 package com.waly.azShipMongo.domain.services;
 
+import com.waly.azShipMongo.domain.CustomPage;
 import com.waly.azShipMongo.domain.Ship;
 import com.waly.azShipMongo.domain.ports.ShipRepositoryPort;
 import com.waly.azShipMongo.domain.ports.ShipServicePort;
@@ -15,7 +16,7 @@ public class ShipService implements ShipServicePort {
     }
 
     @Override
-    public List<Ship> findAll(String param, int page, int pageSize) {
+    public CustomPage<Ship> findAll(String param, int page, int pageSize) {
         return shipPort.findAll(param, page, pageSize);
     }
 

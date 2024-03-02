@@ -1,6 +1,7 @@
 package com.waly.azShipMongo.domain.ports;
 
 import com.waly.azShipMongo.domain.Client;
+import com.waly.azShipMongo.domain.CustomPage;
 
 import java.util.List;
 

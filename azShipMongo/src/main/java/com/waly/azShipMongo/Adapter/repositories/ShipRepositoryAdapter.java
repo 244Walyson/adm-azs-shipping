@@ -7,6 +7,7 @@ import com.waly.azShipMongo.Adapter.model.entities.ShipEntity;
 import com.waly.azShipMongo.Adapter.model.exceptions.DatabaseException;
 import com.waly.azShipMongo.Adapter.model.exceptions.ResourceNotFoundException;
 import com.waly.azShipMongo.domain.Client;
+import com.waly.azShipMongo.domain.CustomPage;
 import com.waly.azShipMongo.domain.Ship;
 import com.waly.azShipMongo.domain.ports.ShipRepositoryPort;
 import lombok.extern.slf4j.Slf4j;
@@ -32,11 +33,11 @@ public class ShipRepositoryAdapter implements ShipRepositoryPort {
     private ModelMapper modelMapper;
 
     @Override
-    public List<Ship> findAll(String param, int page, int pageSize) {
+    public CustomPage<Ship> findAll(String param, int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);
         Page<ShipEntity> shipEntities = repository.searchShips(param, pageable);
-        List<ShipEntity> shipEntityList = shipEntities.getContent();
-        return shipEntityList.stream().map(x -> modelMapper.map(x, Ship.class)).toList();
+        shipEntities.stream().map(x -> modelMapper.map(x, Ship.class));
+        return modelMapper.map(shipEntities, CustomPage.class);
     }
 
     @Override

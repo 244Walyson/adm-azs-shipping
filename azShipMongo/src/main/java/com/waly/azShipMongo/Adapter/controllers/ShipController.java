@@ -2,6 +2,7 @@ package com.waly.azShipMongo.Adapter.controllers;
 
 import com.waly.azShipMongo.Adapter.model.dto.ReqStatus;
 import com.waly.azShipMongo.Adapter.repositories.ShipRepositoryAdapter;
+import com.waly.azShipMongo.domain.CustomPage;
 import com.waly.azShipMongo.domain.Ship;
 import com.waly.azShipMongo.domain.ports.ShipRepositoryPort;
 import com.waly.azShipMongo.domain.ports.ShipServicePort;
@@ -24,7 +25,7 @@ public class ShipController {
     @Autowired
     private ShipServicePort service;
     @SchemaMapping(typeName = "Query", value = "findAllShips")
-    public Page<Ship> findAll(@Argument String param, @Argument Integer page, @Argument Integer pageSize){
+    public CustomPage<Ship> findAll(@Argument String param, @Argument Integer page, @Argument Integer pageSize){
         if(param == null){
             param = "";
         }
@@ -34,9 +35,7 @@ public class ShipController {
         if(pageSize == null){
             pageSize = 10;
         }
-        List<Ship> ships = service.findAll(param, page, pageSize);
-        PageImpl<Ship> pageShip = new PageImpl<>(ships);
-        return pageShip;
+        return service.findAll(param, page, pageSize);
     }
 
     @SchemaMapping(typeName = "Query", value = "shipById")

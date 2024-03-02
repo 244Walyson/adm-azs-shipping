@@ -24,16 +24,14 @@ type Ship {
 
 type ShipPageResult {
     content: [Ship]
-#    isLast: Boolean
-#    isEmpty: Boolean
-#    totalPages: Int
-#    totalElements: Int
-#    number: Int
-#    numberOfElements: Int
-#    size: Int
-#    isFirst: Boolean
-#    hasNext: Boolean
-#    hasPrevious: Boolean
+    isLast: Boolean
+    isEmpty: Boolean
+    totalPages: Int
+    totalElements: Int
+    number: Int
+    numberOfElements: Int
+    size: Int
+    isFirst: Boolean
 }
 
 input ShipInput {
