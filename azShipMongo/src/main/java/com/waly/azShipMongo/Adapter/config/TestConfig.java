@@ -8,13 +8,17 @@ import com.waly.azShipMongo.Adapter.repositories.ClientRepository;
 import com.waly.azShipMongo.Adapter.repositories.ShipRepository;
 import com.waly.azShipMongo.domain.ShipStatus;
 import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.time.Instant;
 import java.util.Arrays;
 
+@Slf4j
 @Configuration
 @Profile("test")
 public class TestConfig {
@@ -26,6 +30,7 @@ public class TestConfig {
 
     @PostConstruct
     public void init() {
+
         clientRepository.deleteAll();
         shipRepository.deleteAll();
 

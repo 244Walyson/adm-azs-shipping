@@ -10,10 +10,14 @@ import com.waly.azShipMongo.domain.services.ShipService;
 import graphql.GraphQL;
 import graphql.execution.ExecutionStrategy;
 import graphql.schema.GraphQLSchema;
+import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+@Slf4j
 @Configuration
 public class config {
 
