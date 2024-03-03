@@ -44,6 +44,9 @@ public class ShipService {
 
     @Transactional(readOnly = false)
     public ShipDTO update(Long id, ShipDTO dto) {
+        if (!repository.existsById(id)){
+            throw new ResourceNotFoundException("Frete não encontrado para o id: " + id);
+        }
         Ship ship = repository.getReferenceById(id);
         ship = copyDtoToEntity(dto);
         ship.setId(id);
