@@ -2,14 +2,14 @@ package com.waly.azShipMongo.domain;
 public class Property {
 
     private String name;
-    private Double propertyValue;
+    private Double value;
 
     public Property() {
     }
 
     public Property(String name, Double propertyValue) {
         this.name = name;
-        this.propertyValue = propertyValue;
+        this.value = propertyValue;
     }
 
     public String getName() {
@@ -20,11 +20,11 @@ public class Property {
         this.name = name;
     }
 
-    public Double getPropertyValue() {
-        return propertyValue;
+    public Double getValue() {
+        return value;
     }
 
-    public void setPropertyValue(Double propertyValue) {
-        this.propertyValue = propertyValue;
+    public void setValue(Double value) {
+        this.value = value;
     }
 }

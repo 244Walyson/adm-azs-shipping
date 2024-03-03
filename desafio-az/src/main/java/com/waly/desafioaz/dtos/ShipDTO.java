@@ -4,7 +4,9 @@ package com.waly.desafioaz.dtos;
 import com.waly.desafioaz.entities.Ship;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,7 +16,7 @@ public class ShipDTO {
     private ClientDTO client;
     private Instant createdAt;
     private String description;
-    private Set<PropertyDTO> properties = new HashSet<>();
+    private List<PropertyDTO> properties = new ArrayList<>();
 
 
     public ShipDTO() {
@@ -25,10 +27,10 @@ public class ShipDTO {
         this.createdAt = ship.getCreatedAt();
         this.description = ship.getDescription();
         this.client = new ClientDTO(ship.getClient());
-        this.properties = ship.getProperties().stream().map(x -> new PropertyDTO(x)).collect(Collectors.toSet());
+        this.properties = ship.getProperties().stream().map(x -> new PropertyDTO(x)).toList();
     }
 
-    public ShipDTO(Long id, Instant createdAt, String description, Set<PropertyDTO> properties) {
+    public ShipDTO(Long id, Instant createdAt, String description, List<PropertyDTO> properties) {
         this.id = id;
         this.createdAt = createdAt;
         this.description = description;
@@ -59,11 +61,11 @@ public class ShipDTO {
         this.description = description;
     }
 
-    public Set<PropertyDTO> getProperties() {
+    public List<PropertyDTO> getProperties() {
         return properties;
     }
 
-    public void setProperties(Set<PropertyDTO> properties) {
+    public void setProperties(List<PropertyDTO> properties) {
         this.properties = properties;
     }
 

@@ -1,5 +1,6 @@
 package com.waly.desafioaz.entities;
 
+import com.waly.desafioaz.dtos.PropertyDTO;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class Property {
     public Property() {
     }
 
-    public Property(Long id, String name, String type, Ship ship, Double propertyValue) {
+    public Property(Long id, String name, Ship ship, Double propertyValue) {
         this.id = id;
         this.name = name;
         this.ship = ship;

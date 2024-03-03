@@ -3,7 +3,9 @@ package com.waly.desafioaz.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,8 +18,8 @@ public class Ship {
     private Instant createdAt;
     private String description;
     private ShipStatus status;
-    @OneToMany(mappedBy = "ship", cascade = CascadeType.ALL)
-    private Set<Property> properties = new HashSet<>();
+    @OneToMany(mappedBy = "ship", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Property> properties = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
@@ -25,7 +27,7 @@ public class Ship {
     public Ship() {
     }
 
-    public Ship(Long id, Instant createdAt, String description, Set<Property> properties) {
+    public Ship(Long id, Instant createdAt, String description, List<Property> properties) {
         this.id = id;
         this.createdAt = createdAt;
         this.description = description;
@@ -58,17 +60,12 @@ public class Ship {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public Set<Property> getProperties() {
-        return properties;
-    }
-
-    public void setProperties(Set<Property> properties) {
-        this.properties = properties;
-    }
-
     public void setProperty(Property property){
         properties.add(property);
+    }
+
+    public List<Property> getProperties() {
+        return properties;
     }
 
     public ShipStatus getStatus() {
@@ -81,6 +78,10 @@ public class Ship {
 
     public Client getClient() {
         return client;
+    }
+
+    public void setProperties(List<Property> properties) {
+        this.properties = properties;
     }
 
     public void setClient(Client client) {

@@ -4,6 +4,7 @@ import com.waly.desafioaz.dtos.ClientDTO;
 import com.waly.desafioaz.dtos.ClientShipDTO;
 import com.waly.desafioaz.services.ClientService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,7 +40,7 @@ public class ClientController {
 
 
     @PostMapping
-    public ResponseEntity<ClientDTO> findById(@RequestBody ClientDTO dto){
+    public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO dto){
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(service.insert(dto));
     }

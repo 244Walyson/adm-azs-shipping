@@ -45,7 +45,7 @@ input ShipInput {
     client: ClientInputShip!
 }
 input ShipInputUpdate {
-    id: ID!
+    id: String!
     description: String!
     status: ShipStatus!
     properties: [PropertyInput]!
@@ -54,12 +54,12 @@ input ShipInputUpdate {
 
 input PropertyInput {
     name: String!
-    propertyValue: Float!
+    value: Float!
 }
 
 type Property {
     name: String
-    propertyValue: Float
+    value: Float
 }
 
 type Client {

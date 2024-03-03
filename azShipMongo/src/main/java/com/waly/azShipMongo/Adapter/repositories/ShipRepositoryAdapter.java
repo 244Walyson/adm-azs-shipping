@@ -2,6 +2,7 @@ package com.waly.azShipMongo.Adapter.repositories;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.waly.azShipMongo.Adapter.model.embedded.ClientEmbedded;
+import com.waly.azShipMongo.Adapter.model.embedded.PropertyEmbedded;
 import com.waly.azShipMongo.Adapter.model.entities.ClientEntity;
 import com.waly.azShipMongo.Adapter.model.entities.ShipEntity;
 import com.waly.azShipMongo.Adapter.model.exceptions.DatabaseException;
@@ -52,6 +53,7 @@ public class ShipRepositoryAdapter implements ShipRepositoryPort {
     public Ship insert(Ship ship) {
         ShipEntity entity = modelMapper.map(ship, ShipEntity.class);
         entity.setCreatedAt(Instant.now());
+        entity.setProperties(ship.getProperties().stream().map(x -> modelMapper.map(x, PropertyEmbedded.class)).toList());
         String clientId = ship.getClient().getId();
         ClientEntity client = clientRepository.findById(clientId).orElseThrow(() -> {
             throw new ResourceNotFoundException("Cliente não encontrado para o id: " + clientId);
@@ -62,18 +64,18 @@ public class ShipRepositoryAdapter implements ShipRepositoryPort {
 
     @Override
     public Ship update(Ship ship) {
-        ShipEntity entity = repository.findById(ship.getId()).orElseThrow(() -> {
-            throw new ResourceNotFoundException("Frete não encontrado para o id: " + ship.getId());
+        String id = ship.getId();
+        ShipEntity entity = repository.findById(id).orElseThrow(() -> {
+            throw new ResourceNotFoundException("Frete não encontrado para o id: " + id);
         });
-        Instant instant = entity.getCreatedAt();
-        entity.getProperties().clear();
+        modelMapper.map(ship, entity);
+        entity.setCreatedAt(Instant.now());
+        entity.setProperties(ship.getProperties().stream().map(x -> modelMapper.map(x, PropertyEmbedded.class)).toList());
         String clientId = ship.getClient().getId();
         ClientEntity client = clientRepository.findById(clientId).orElseThrow(() -> {
             throw new ResourceNotFoundException("Cliente não encontrado para o id: " + clientId);
         });
-        modelMapper.map(ship, entity);
         entity.setClient(new ClientEmbedded(client));
-        entity.setCreatedAt(instant);
         return modelMapper.map(repository.save(entity), Ship.class);
     }
 

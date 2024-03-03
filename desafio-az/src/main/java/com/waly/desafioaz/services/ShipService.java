@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class ShipService {
 
@@ -55,6 +57,7 @@ public class ShipService {
         ship = repository.save(ship);
         return new ShipDTO(ship);
     }
+
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Long id) {

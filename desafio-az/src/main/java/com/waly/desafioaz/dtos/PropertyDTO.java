@@ -4,7 +4,6 @@ import com.waly.desafioaz.entities.Property;
 
 public class PropertyDTO {
 
-    private Long id;
     private String name;
     private Double propertyValue;
 
@@ -13,24 +12,15 @@ public class PropertyDTO {
     }
 
     public PropertyDTO(Property property) {
-        this.id = property.getId();
         this.name = property.getName();
         this.propertyValue = property.getPropertyValue();
     }
 
-    public PropertyDTO(Long id, String name, String type, Double propertyValue) {
-        this.id = id;
+    public PropertyDTO(String name, Double propertyValue) {
         this.name = name;
         this.propertyValue = propertyValue;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

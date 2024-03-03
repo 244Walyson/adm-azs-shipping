@@ -1,15 +1,29 @@
 package com.waly.desafioaz.dtos;
 
 import com.waly.desafioaz.entities.Client;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 import java.util.Set;
 
 public class ClientDTO {
 
     private Long id;
+    @NotEmpty(message = "Nome do cliente não pode ser vazio")
+    @NotNull(message = "Nome do cliente não pode ser null")
     private String name;
+    @NotEmpty(message = "Email do cliente não pode ser vazio")
+    @NotNull(message = "Email do cliente não pode ser null")
+    @Email(message = "Email invalido")
     private String email;
+    @NotEmpty(message = "Telefon do cliente não pode ser vazio")
+    @NotNull(message = "Telfeone do cliente não pode ser null")
     private String phone;
+    @NotEmpty(message = "Cnpj e do cliente não pode ser vazio")
+    @NotNull(message = "Cnpj do cliente não pode ser null")
+    @Pattern(regexp = "\\d{14}", message = "Cnpj inválido")
     private String cnpj;
 
     public ClientDTO() {
