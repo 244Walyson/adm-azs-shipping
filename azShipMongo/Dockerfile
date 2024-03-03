@@ -1,6 +1,6 @@
-FROM openjdk:22-ea-21-slim-bullseye
-RUN mkdir /app
-WORKDIR /app
-COPY target/*.jar /app/az-ship.jar
-EXPOSE 8080
-CMD ["java", "-jar", "/app/az-ship.jar"]
+FROM maven:3.8.7-openjdk-18-slim
+COPY . .
+WORKDIR .
+RUN mvn clean install -DskipTests
+EXPOSE 8081
+CMD ["mvn", "spring-boot:run"]
