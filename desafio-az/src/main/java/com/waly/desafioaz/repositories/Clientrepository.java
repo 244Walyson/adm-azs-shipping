@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface Clientrepository extends JpaRepository<Client, Long> {
 
     @Query("""
@@ -20,4 +22,6 @@ public interface Clientrepository extends JpaRepository<Client, Long> {
                 LOWER(obj.cnpj) LIKE LOWER(CONCAT('%', :param ,'%'))
             """)
     Page<Client> findAllByParam(@Param("param") String param, Pageable pageable);
+
+    Client findByEmail(String email);
 }

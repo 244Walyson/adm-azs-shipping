@@ -1,13 +1,12 @@
 package com.waly.desafioaz.dtos;
 
 import com.waly.desafioaz.entities.Client;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import com.waly.desafioaz.services.validation.UserInsertValid;
+import jakarta.validation.constraints.*;
 
 import java.util.Set;
 
+@UserInsertValid
 public class ClientDTO {
 
     private Long id;
@@ -18,12 +17,12 @@ public class ClientDTO {
     @NotNull(message = "Email do cliente não pode ser null")
     @Email(message = "Email invalido")
     private String email;
-    @NotEmpty(message = "Telefon do cliente não pode ser vazio")
-    @NotNull(message = "Telfeone do cliente não pode ser null")
+    @NotEmpty(message = "Número de telefone do cliente não pode ser vazio")
+    @NotNull(message = "Número de cliente não pode ser null")
     private String phone;
     @NotEmpty(message = "Cnpj e do cliente não pode ser vazio")
     @NotNull(message = "Cnpj do cliente não pode ser null")
-    @Pattern(regexp = "\\d{14}", message = "Cnpj inválido")
+    @Size(min = 14, max = 14, message = "Cnpj invalido")
     private String cnpj;
 
     public ClientDTO() {

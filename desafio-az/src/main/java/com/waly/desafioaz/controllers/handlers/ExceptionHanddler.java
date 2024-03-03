@@ -1,12 +1,11 @@
 package com.waly.desafioaz.controllers.handlers;
 
-import com.waly.desafioaz.dtos.CustomError;
-import com.waly.desafioaz.exceptions.DatabaseException;
-import com.waly.desafioaz.exceptions.ResourceNotFoundException;
-import com.waly.desafioaz.exceptions.ValidateException;
+import com.waly.desafioaz.exceptions.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -20,8 +19,9 @@ public class ExceptionHanddler {
         CustomError customError = new CustomError();
         int status = HttpStatus.BAD_REQUEST.value();
         customError.setTimestamp(Instant.now());
-        customError.setError(validateException.getMessage());
+        customError.setError("Validation error");
         customError.setStatus(status);
+        customError.setMessage(customError.getMessage());
         customError.setPath(request.getRequestURI());
         return ResponseEntity.status(status).body(customError);
     }
@@ -31,8 +31,9 @@ public class ExceptionHanddler {
         CustomError customError = new CustomError();
         int status = HttpStatus.NOT_FOUND.value();
         customError.setTimestamp(Instant.now());
-        customError.setError(resourceNotFoundException.getMessage());
+        customError.setError("Resource not found");
         customError.setStatus(status);
+        customError.setMessage(customError.getMessage());
         customError.setPath(request.getRequestURI());
         return ResponseEntity.status(status).body(customError);
     }
@@ -42,10 +43,25 @@ public class ExceptionHanddler {
         CustomError customError = new CustomError();
         int status = HttpStatus.BAD_REQUEST.value();
         customError.setTimestamp(Instant.now());
-        customError.setError(databaseException.getMessage());
+        customError.setError("Database Exception");
         customError.setStatus(status);
         customError.setPath(request.getRequestURI());
+        customError.setMessage(customError.getMessage());
         return ResponseEntity.status(status).body(customError);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<CustomError> methodArgumentNotValidException(MethodArgumentNotValidException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
+        ValidationError error = new ValidationError();
+        error.setError("Validate Exception");
+        error.setPath(request.getRequestURI());
+        error.setStatus(status.value());
+        error.setTimestamp(Instant.now());
+        for (FieldError f : e.getBindingResult().getFieldErrors()){
+            error.addError(f.getField(), f.getDefaultMessage());
+        }
+        return ResponseEntity.status(status.value()).body(error);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.waly.desafioaz.dtos;
+package com.waly.desafioaz.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,15 +12,17 @@ public class CustomError {
     private Integer status;
     private String error;
     private String path;
+    private String message;
 
     public CustomError() {
     }
 
-    public CustomError(Instant timestamp, Integer status, String error, String path) {
+    public CustomError(Instant timestamp, Integer status, String error, String path, String message) {
         this.timestamp = timestamp;
         this.status = status;
         this.error = error;
         this.path = path;
+        this.message = message;
     }
 
     public Instant getTimestamp() {
@@ -53,5 +55,13 @@ public class CustomError {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
