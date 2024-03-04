@@ -80,6 +80,10 @@ public class Ship {
         return client;
     }
 
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public void setProperties(List<Property> properties) {
         this.properties = properties;
     }

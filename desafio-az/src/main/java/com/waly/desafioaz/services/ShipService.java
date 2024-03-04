@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -48,8 +49,10 @@ public class ShipService {
             throw new ResourceNotFoundException("Frete não encontrado para o id: " + id);
         }
         Ship ship = repository.getReferenceById(id);
+        Instant created = ship.getCreatedAt();
         ship = copyDtoToEntity(dto);
         ship.setId(id);
+        ship.setCreatedAt(created);
         ship = repository.save(ship);
         return new ShipDTO(ship);
     }
