@@ -69,3 +69,4 @@ jobs:
         working-directory: desafio-az
 
       - run: echo "done main to homolog"
+      - run: echo "done"
