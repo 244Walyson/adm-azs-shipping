@@ -8,7 +8,7 @@ O desafio-az e  o azShipMongo são o mesmo projeto mas desenvolvidos com diferen
 
 
 ### desafio-az
-
+### **link aplicação REST na aws:** [***http://azship20240304ebcname202403040554.us-east-2.elasticbeanstalk.com***](http://azship20240304ebcname202403040554.us-east-2.elasticbeanstalk.com/ships)
 O Desafio-Az foi desenvolvido com uma abordagem baseada em arquitetura Domain-Driven Design (DDD) e utiliza uma implementação REST. O banco de dados escolhido é o PostgreSQL, proporcionando uma base de dados relacional para garantir consistência e relacionamentos entre as entidades.
 
 #### Tecnologias Utilizadas:
@@ -17,7 +17,6 @@ O Desafio-Az foi desenvolvido com uma abordagem baseada em arquitetura Domain-Dr
 - **Banco de Dados:** PostgreSQL (Relacional)
 - **Implementação da API:** REST
 - **CI/CD Inplantação:** Github Actions, AWS
-### **link aplicação REST na aws:** [***http://azship20240304ebcname202403040554.us-east-2.elasticbeanstalk.com***](http://azship20240304ebcname202403040554.us-east-2.elasticbeanstalk.com/ships)
 
 ### AzShipMongo
 
