@@ -26,7 +26,7 @@ O azShipmongo, por outro lado, foidesenvolvido com uma arquitetura Hexagonal (Po
 
 ## Documentação da API
 
-A documentação da API é fornecida usando o padrão OpenAPI 3.0.1. Você pode visualizar a documentação interativa da API acessando o endpoint [http://localhost:8081/swagger-ui](http://localhost:8081/swagger-ui), o playground do grapQl pode ser acessado através do endpoint [http://localhost:8080/graphiql](http://localhost:8080/graphiql).
+A documentação da API é fornecida usando o padrão OpenAPI 3.0.1. Você pode visualizar a documentação interativa da API acessando o endpoint [http://localhost:8081/swagger-ui/index.html](http://localhost:8081/swagger-ui/index.html), o playground do grapQl pode ser acessado através do endpoint [http://localhost:8080/graphiql](http://localhost:8080/graphiql).
 
 
 ### Query
