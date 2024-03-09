@@ -13,7 +13,7 @@ O Desafio-Az foi desenvolvido com uma abordagem baseada em arquitetura Domain-Dr
 
 #### Tecnologias Utilizadas:
 
-- **Arquitetura:** Domain-Driven Design (DDD)
+- **Arquitetura:** Layered Architecture (N-Tier Architecture)
 - **Banco de Dados:** PostgreSQL (Relacional)
 - **Implementação da API:** REST
 - **CI/CD Inplantação:** Github Actions, AWS
